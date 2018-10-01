@@ -30,7 +30,7 @@ def text_prepare(text):
 
     return text.strip()
 
-
+import pandas as pd
 def load_embeddings(embeddings_path):
     """Loads pre-trained word embeddings from tsv file.
 
@@ -51,10 +51,21 @@ def load_embeddings(embeddings_path):
     ########################
 
     # remove this when you're done
-    raise NotImplementedError(
-        "Open utils.py and fill with your code. In case of Google Colab, download"
-        "(https://github.com/hse-aml/natural-language-processing/blob/master/project/utils.py), "
-        "edit locally and upload using '> arrow on the left edge' -> Files -> UPLOAD")
+    pdr = pd.read_csv(embeddings_path,sep="\t",header=None)
+  
+	embeddings = {}
+
+	dim = pdr.loc[0].tolist()
+	dim = dim[1:]
+	dim = len(dim)
+
+	for i in range(pdr.shape[0]):
+
+		row = pdr.loc[i].tolist()
+		embeddings[row[0]] = row[1:]
+
+
+	return embeddings,dim
 
 
 def question_to_vec(question, embeddings, dim):
