@@ -78,11 +78,22 @@ def question_to_vec(question, embeddings, dim):
     ########################
 
     # remove this when you're done
-    raise NotImplementedError(
-        "Open utils.py and fill with your code. In case of Google Colab, download"
-        "(https://github.com/hse-aml/natural-language-processing/blob/master/project/utils.py), "
-        "edit locally and upload using '> arrow on the left edge' -> Files -> UPLOAD")
+    wordPresent = False
+    init = np.zeros(dim)
+    count = 0
+    words = question.split()
 
+    for eachword in words:
+        if eachword in embeddings:
+            # print(eachword)
+            wordPresent = True
+            count += 1
+            init += embeddings[eachword]
+    if question == '' or not wordPresent:
+        return init
+
+    init /= count
+    return init
 
 def unpickle_file(filename):
     """Returns the result of unpickling the file content."""
