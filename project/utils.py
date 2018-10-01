@@ -53,19 +53,19 @@ def load_embeddings(embeddings_path):
     # remove this when you're done
     pdr = pd.read_csv(embeddings_path,sep="\t",header=None)
   
-	embeddings = {}
+    embeddings = {}
 
-	dim = pdr.loc[0].tolist()
-	dim = dim[1:]
-	dim = len(dim)
+    dim = pdr.loc[0].tolist()
+    dim = dim[1:]
+    dim = len(dim)
 
-	for i in range(pdr.shape[0]):
+    for i in range(pdr.shape[0]):
 
-		row = pdr.loc[i].tolist()
-		embeddings[row[0]] = row[1:]
+        row = pdr.loc[i].tolist()
+        embeddings[row[0]] = row[1:]
 
 
-	return embeddings,dim
+    return embeddings,dim
 
 
 def question_to_vec(question, embeddings, dim):
