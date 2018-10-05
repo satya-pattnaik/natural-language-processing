@@ -7,8 +7,7 @@ import os
 import json
 
 from requests.compat import urljoin
-
-
+from project.dialogue_manager import *
 class BotHandler(object):
     """
         BotHandler is a class which implements all back-end of the bot.
@@ -84,7 +83,8 @@ def main():
     # This is the point where you plug it into the Telegram bot. 
     # Do not forget to import all needed dependencies when you do so.
     
-    simple_manager = SimpleDialogueManager()
+    simple_manager = DialogueManager()
+    simple_manager.create_chitchat_bot()
     bot = BotHandler(token, simple_manager)
     
     ###############################################################
