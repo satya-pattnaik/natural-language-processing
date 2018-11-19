@@ -23,5 +23,7 @@ def main():
     for item in data[:10]:
         print(item)
 
+    return data
+
 if __name__ == "__main__":
     main()
